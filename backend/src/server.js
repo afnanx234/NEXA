@@ -1,15 +1,17 @@
 import express from "express"
 import path from "path"
-import { ENV } from "./lib/env.js"
+import cookieParser from "cookie-parser"
 
 import authRoutes from "./routes/auth.routes.js"
 import messageRoutes from "./routes/message.routes.js"
 import { connectDB } from "./lib/db.js"
+import { ENV } from "./lib/env.js"
 
 const app = express()
 const __dirname = path.resolve()
 
 app.use(express.json()) //the data user and we catch
+app.use(cookieParser())
 
 app.use("/api/auth", authRoutes)
 app.use("/api/message", messageRoutes)
